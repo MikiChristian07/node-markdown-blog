@@ -1,7 +1,7 @@
 import express from 'express';
-import pino from 'pino'
+import pino from 'pino';
 
-const logger = pino();
+export const logger = pino();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
