@@ -1,6 +1,8 @@
-import mongoose from 'mongooose';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import { logger } from '../app.js';
 
+dotenv.config();
 const dbConn = () => {
     mongoose.connect(process.env.MONGO_URI)
         .then(() => {
