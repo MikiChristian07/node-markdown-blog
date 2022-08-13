@@ -11,7 +11,7 @@ class ArticleController{
         
         try{
             const newArticle = await ArticleService.create(data);
-            res.redirect(`/articles/${newArticle.id}`);
+            res.redirect(`/articles/${newArticle.slug}`);
         } catch (e) {
             res.render('articles/new', { article: data })
         }
@@ -22,12 +22,17 @@ class ArticleController{
     }
 
     async articleById(req, res){
-        const article = await ArticleService.findById(req.params.id);
+        const article = await ArticleService.findBySlug(req.params.id);
         
         if (_.isEmpty(article)){
             res.redirect('/')
         }
         res.render('articles/show', { article: article })
+    }
+
+    async deleteArticle(req, res){
+        const article = await ArticleService.delete(req.params.id);
+        res.redirect('/');
     }
 };
 

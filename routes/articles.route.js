@@ -8,7 +8,10 @@ articleRoute.get('/new', (req, res) => {
     res.render('articles/new', {article: new Article()});
 })
 
-articleRoute.get('/:id', ArticleController.articleById);
+articleRoute.get('/:slug', ArticleController.articleById);
+
+articleRoute.delete('/:id', ArticleController.deleteArticle);
 
 articleRoute.post('/new', ArticleController.createArticle);
+
 export default articleRoute;

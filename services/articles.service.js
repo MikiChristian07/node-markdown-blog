@@ -6,14 +6,21 @@ class ArticleService {
         return newArticle
     }
 
-    async findById(id){
-        const articleId = await Article.findById(id);
+    async findBySlug(id){
+        const articleId = await Article.findOne({ slug: id });
         return articleId;
     }
 
     async fetchAll(){
-        const allArticles = await Article.find();
+        const allArticles = await Article.find().sort({
+            createdAt: 'desc'
+        });
         return allArticles;
+    }
+
+    async delete(id){
+        const deleteArticle = await Article.findByIdAndDelete(id);
+        return deleteArticle;
     }
 };
 
